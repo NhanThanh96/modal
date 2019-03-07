@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .demo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .modal {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+
+        .modal.visible {
+            display: block;
+        }
+
+        .demo.visible {
+            display: block;
+        }
+
+        .modal__header {
+            color: white;
+            background: #333;
+            line-height: 50px;
+            text-align: center;
+            position: relative;
+            height: 50px;
+            box-sizing: border-box;
+
+
+        }
+
+        modal__header a {
+            position: absolute;
+            top: 0;
+            right: 0;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: block;
+            padding: 0 20px;
+            font-size: 16px;
+            background: #555;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a  class="js-open-modal">open modal</a>
+    <div class='demo'>
+        <div class="modal">
+            <div class="modal__header">
+                modal header
+                <a href="#" class="js-close-modal">X</a>
+            </div>
+            <p>
+                hey there, I'm the modal
+            </p>
+
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script>
+        $(".js-open-modal").on(('click'),function () {
+
+            $(".demo").addClass("visible");
+            $(".modal").addClass("visible");
+        });
+
+        $(".js-close-modal").click(function () {
+            $(".modal").removeClass("visible");
+            $(".demo").removeClass("visible");
+        });
+
+        $(document).click(function (event) {
+            //if you click on anything except the modal itself or the "open modal" link, close the modal
+            if (!$(event.target).closest(".modal,.js-open-modal").length) {
+                $("body").find(".modal").removeClass("visible");
+                $("body").find(".demo").removeClass("visible");
+            }
+        });
+    </script>
+</body>
+
+</html>
